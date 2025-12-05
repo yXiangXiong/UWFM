@@ -9,22 +9,29 @@ create a directory below and add your own datasets.
 /home/data/nature-breast-ultrasound/pretrain
 |─train
 │      ALN-Ultra
-│        001_.png
-│        002_.png
-│        ...
-│        003_.png
+│          001_.png
+│          002_.png
+│          ...
+│          003_.png
 │      Breast-Us-Video
-│        001_.png
-│        002_.png
-│        ...
-│        003_.png
+│          001_.png
+│          002_.png
+│          ...
+│          003_.png
 │      BUI
+│          ...
 │      HiSBreast
+│          ...
 │      PKUTH
+│          ...
 │      SYSUCC
+│          ...
 │      TDSC-ABUS
+│          ...
 │      WHBUS
+│          ...
 │      ZJCH
+│          ...
 ├─valid
 │      BUSI
 │        001_.png

@@ -9,7 +9,15 @@ create a directory below and add your own datasets.
 /home/data/nature-breast-ultrasound/pretrain
 |─train
 │      ALN-Ultra
+│        001_.png
+│        002_.png
+│        ...
+│        003_.png
 │      Breast-Us-Video
+│        001_.png
+│        002_.png
+│        ...
+│        003_.png
 │      BUI
 │      HiSBreast
 │      PKUTH
@@ -19,7 +27,15 @@ create a directory below and add your own datasets.
 │      ZJCH
 ├─valid
 │      BUSI
+│        001_.png
+│        002_.png
+│        ...
+│        003_.png
 │      UDIAT
+│        001_.png
+│        002_.png
+│        ...
+│        003_.png
 ```
 
 ### Pretrain
@@ -76,4 +92,20 @@ export CUDA_VISIBLE_DEVICES=0
 torchrun --nproc_per_node=1 test_enhancer.py \
 --data_root /home/data/nature-breast-ultrasound/finetune-synthesis/USenhance-Breast \
 --finetuned_model_name nature-breast-ultrasound_vit_large_patch16_G_L2H
+```
+### downstream denoising
+```bash
+export OMP_NUM_THREADS=8
+export CUDA_VISIBLE_DEVICES=0,1
+torchrun --nproc_per_node=2 train_denoise.py \
+--data_root /home/data/nature-breast-ultrasound/finetune-denoise/BUSIS-0.2 \
+--pretrained_dataset_name nature-breast-ultrasound \
+--pretrained_model_name mae_vit_large_patch16 \
+--batch_size 4 --num_epochs 100
+
+export OMP_NUM_THREADS=8
+export CUDA_VISIBLE_DEVICES=0
+torchrun --nproc_per_node=1 test_denoise.py \
+--data_root /home/data/nature-breast-ultrasound/finetune-denoise/BUSIS-0.2 \
+--finetuned_model_name nature-breast-ultrasound_vit_large_patch16_G_N2C
 ```

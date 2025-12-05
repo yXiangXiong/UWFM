@@ -6,7 +6,7 @@ We developed a foundation model for breast ultrasound analysis. We validate the 
 ## [Datasets]
 create a directory below and add your own datasets.
 ```
-Random_AorticData：
+/home/data/nature-breast-ultrasound/pretrain
 |─train
 │      ALN-Ultra
 │      Breast-Us-Video
@@ -20,11 +20,25 @@ Random_AorticData：
 ├─valid
 │      BUSI
 │      UDIAT
+```
 
-### Pretrain and Test
+### Pretrain
 export OMP_NUM_THREADS=8
 export CUDA_VISIBLE_DEVICES=0,1
 torchrun --nproc_per_node=2 mae_pretrain.py \
 --dataset_root /home/data/nature-breast-ultrasound \
 --model_name mae_vit_large_patch16 --batch_size 512 --max_device_batch_size 128 \
 --determinism --lam_rd 0.0015 --save_freq 500 --mask_ratio 0.65 --determinism
+
+### downstream tasks
+export CUDA_VISIBLE_DEVICES=0,1
+torchrun --nproc_per_node=2 train_segmentor.py \
+--data_root /home/data/nature-breast-ultrasound/finetune-segmentation/BUSG \
+--pretrained_dataset_name nature-breast-ultrasound --pretrained_model_name mae_vit_large_patch16 \
+--batch_size 64 --max_device_batch_size 32
+
+export CUDA_VISIBLE_DEVICES=0,1
+torchrun --nproc_per_node=2 train_segmentor.py \
+--data_root /home/data/nature-breast-ultrasound/finetune-segmentation/BUSG \
+--pretrained_dataset_name nature-breast-ultrasound --pretrained_model_name mae_vit_large_patch16 \
+--batch_size 64 --max_device_batch_size 32

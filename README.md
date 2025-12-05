@@ -61,7 +61,7 @@ torchrun --nproc_per_node=1 test_segmentor.py \
 --data_root /home/data/nature-breast-ultrasound/finetune-segmentation/BUSG \
 --finetuned_model_name nature-breast-ultrasound_vit_large_patch16_segmentor
 ```
-###
+### downstream synthesis
 ```bash
 export OMP_NUM_THREADS=8
 export CUDA_VISIBLE_DEVICES=0,1

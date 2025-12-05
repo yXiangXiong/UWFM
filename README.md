@@ -4,7 +4,7 @@ We developed a foundation model for breast ultrasound analysis. We validate the 
 
 
 ## Model system
-<img src="https://github.com/yXiangXiong/UWFM/framework.png"/>
+<img src='imgs/framework.png' width="800px"/>
 
 ## [Datasets]
 create a directory below and add your own datasets.

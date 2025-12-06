@@ -6,8 +6,7 @@ We developed a foundation model for breast ultrasound analysis. We validate the 
 ## Model system
 <img src='imgs/framework.png' width="800px"/>
 
-## [Datasets]
-create a directory below and add your own datasets.
+## [Pretrain Datasets]
 ```
 /home/data/nature-breast-ultrasound/pretrain
 |─train
@@ -46,6 +45,45 @@ create a directory below and add your own datasets.
 │        002_.png
 │        ...
 │        003_.png
+```
+
+## [Downstream Datasets]
+create a directory below and add your own datasets.
+```
+/home/data/nature-breast-ultrasound/finetune-classification
+|─train
+│      class1
+│          001.png
+│          002.png
+│          ...
+│          003.png
+|      class2
+│          001.png
+│          002.png
+│          ...
+│          003.png
+│-valid
+│      class1
+│          001.png
+│          002.png
+│          ...
+│          003.png
+|      class2
+│          001.png
+│          002.png
+│          ...
+│          003.png
+|-test
+│      class1
+│          001.png
+│          002.png
+│          ...
+│          003.png
+|      class2
+│          001.png
+│          002.png
+│          ...
+│          003.png
 ```
 
 ### Pretrain
